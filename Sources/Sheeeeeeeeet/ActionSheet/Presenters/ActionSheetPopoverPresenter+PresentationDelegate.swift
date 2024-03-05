@@ -23,6 +23,7 @@ extension ActionSheetPopoverPresenter {
             .none
         }
         
+#if !os(visionOS)
         public func popoverPresentationControllerShouldDismissPopover(_ controller: UIPopoverPresentationController) -> Bool {
             guard
                 let config = presenter.actionSheet?.configuration,
@@ -32,5 +33,6 @@ extension ActionSheetPopoverPresenter {
             presenter.dismiss {}
             return false
         }
+#endif
     }
 }

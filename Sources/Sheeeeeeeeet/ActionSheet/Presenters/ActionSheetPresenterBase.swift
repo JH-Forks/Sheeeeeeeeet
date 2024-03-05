@@ -67,10 +67,12 @@ open class ActionSheetPresenterBase: ActionSheetPresenter {
     }
     
     func setupOrientationChangeDetection() {
+#if !os(visionOS)
         let action = #selector(handleOrientationChange)
         let name = UIApplication.willChangeStatusBarOrientationNotification
         notificationCenter.removeObserver(self, name: name, object: nil)
         notificationCenter.addObserver(self, selector: action, name: name, object: nil)
+#endif
     }
 }
 
