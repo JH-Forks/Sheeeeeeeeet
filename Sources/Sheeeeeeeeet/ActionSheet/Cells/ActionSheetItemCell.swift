@@ -38,9 +38,6 @@ open class ActionSheetItemCell: UITableViewCell {
     public convenience init(style: UITableViewCell.CellStyle) {
         let reuseIdentifier = type(of: self).className
         self.init(style: style, reuseIdentifier: reuseIdentifier)
-        #if os(visionOS)
-        hoverStyle = UIHoverStyle(shape: .rect(cornerRadius: 12))
-        #endif
     }
 
     // MARK: - Layout
@@ -64,6 +61,7 @@ open class ActionSheetItemCell: UITableViewCell {
     @objc public dynamic var disabledSubtitleColor: UIColor?
     @objc public dynamic var disabledTintColor: UIColor?
 
+    @objc public dynamic var itemHoverStyle: UIHoverStyle?
     // MARK: - Private Properties
 
     public private(set) weak var item: MenuItem?
@@ -87,6 +85,7 @@ open class ActionSheetItemCell: UITableViewCell {
         detailTextLabel?.text = item.subtitle
         detailTextLabel?.textColor = item.isEnabled ? subtitleColor : disabledSubtitleColor
         detailTextLabel?.textAlignment = itemTextAlignment
+        hoverStyle = itemHoverStyle
     }
 
     func refresh(with item: MenuItem) {
